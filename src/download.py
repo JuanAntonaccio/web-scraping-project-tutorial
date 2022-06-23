@@ -25,3 +25,11 @@ for row in tables[my_index].tbody.find_all('tr'):
         # Probar con una lista
 
 print(df)
+
+#Remove de rows in the dataframe that are empty strings or are NAN in the Revenue column
+
+df = df[df['revenue']!=""]
+print(df)
+
+# Fijarse el tipo de dato que tiene el df
+print(type(df))
