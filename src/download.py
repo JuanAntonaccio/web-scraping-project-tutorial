@@ -55,3 +55,9 @@ conectar.commit()
 for fila in con.execute('SELECT * FROM revenue'):
     print(fila)
 
+   
+
+conectar.close()    
+
+
+
