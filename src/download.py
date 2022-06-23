@@ -33,3 +33,25 @@ print(df)
 
 # Fijarse el tipo de dato que tiene el df
 print(type(df))
+
+#Insertar los datos en un sqlite3 para eso convertimos el df en una lista de tuplas
+registros = df.to_records(index=False)
+lista_tuplas = list(registros)
+print(lista_tuplas)
+
+#Usar la funcion connect() de sqlite3 para crear la base de datos.
+
+conectar = sqlite3.connect('Datos.db')
+
+con = conectar.cursor()
+
+con.execute(""" CREATE TABLE revenue (Fecha,Revenue) """)
+
+
+con.executemany('INSERT INTO revenue VALUES(?,?)', lista_tuplas)
+
+conectar.commit()
+
+for fila in con.execute('SELECT * FROM revenue'):
+    print(fila)
+
